@@ -5,32 +5,40 @@ from django.views.generic import ListView
 from .forms import EmailPostForm, CommentForm
 from django.core.mail import send_mail
 from django.views.decorators.http import require_POST
-# Create your views here.
+from taggit.models import Tag
+from django.db.models import Count
 
 # same as postlist, but using class based views
 
 
-class PostListView(ListView):
+""" class PostListView(ListView):
     queryset = Post.published.all()
     context_object_name = 'posts'
     paginate_by = 3
-    template_name = 'blog/post/post_list.xhtml'
+    template_name = 'blog/post/post_list.xhtml' """
 
 
-""" def post_list(request):
+def post_list(request, tag_slug=None):
     post_list_result = Post.published.all()
+    tag = None
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        post_list_result = post_list_result.filter(tags__in=[tag])
     # pagination with 3 posts per page
     paginator = Paginator(post_list_result, 3)
     page_number = request.GET.get('page', 1)
     try:
         posts = paginator.page(page_number)
     except PageNotAnInteger:
-        # if page number is not an inteer deliver the first page
+        # if page number is not an integer deliver the first page
         posts = paginator.page(1)
     except EmptyPage:
         # if page number is out of range deliver last page of results
         posts = paginator.page(paginator.num_pages)
-    return render(request, 'blog/post/post_list.xhtml', {'posts': posts}) """
+    return render(request, 'blog/post/post_list.xhtml',
+                  {'posts': posts,
+                   'tag': tag
+                   })
 
 
 def post_detail(request, year, month, day, post):
@@ -44,10 +52,19 @@ def post_detail(request, year, month, day, post):
     comments = post.comments.filter(active=True)
     # Form for users to comment
     form = CommentForm()
+    # list of similar posts
+    post_tags_ids = post.tags.values_list('id', flat=True)
+    similar_posts = Post.published.filter(
+        tags__in=post_tags_ids).exclude(id=post.id)
+    similar_posts = similar_posts.annotate(same_tags=Count('tags')).order_by(
+        '-same_tags', '-publish'
+    )[:4]
+
     return render(request, 'blog/post/post_detail.xhtml',
                   {'post': post,
                    'comments': comments,
-                   'form': form
+                   'form': form,
+                   'similar_posts': similar_posts
                    })
 
 
