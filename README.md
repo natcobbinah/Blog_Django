@@ -13,6 +13,12 @@
 10. Sitemap with sitemap framework
 11. Full-text search with PostgreSQL
 
-![alt text](https://github.com/[natcobbinah]/[Blog_Django]/blob/[master]/screenshot1.PNG?raw=true)
-![alt text](https://github.com/[natcobbinah]/[Blog_Django]/blob/[master]/screenshot2.PNG?raw=true)
-![alt text](https://github.com/[natcobbinah]/[Blog_Django]/blob/[master]/screenshot3.PNG?raw=true)
+### Sample Screenshots of project
+1
+![django blog](https://github.com/natcobbinah/Blog_Django/assets/10479361/9988f036-bb1f-4533-b7e2-76a4b446eb68)
+
+2
+![django blog2](https://github.com/natcobbinah/Blog_Django/assets/10479361/e4805028-ea06-41b8-9026-0f7ec94e95b1)
+
+3
+![django blog3](https://github.com/natcobbinah/Blog_Django/assets/10479361/ce86f543-60be-470d-bcf1-e0f8fc4a0ddb)
