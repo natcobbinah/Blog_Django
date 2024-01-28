@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
     "django.contrib.sites",
+    "django.contrib.postgres",
     # 3rd party
     "taggit",
     # local,
@@ -90,9 +91,19 @@ WSGI_APPLICATION = "django_project.wsgi.application"
 #        "NAME": BASE_DIR / "db.sqlite3",
 #    }
 
+# connecting to postgres
 DATABASES = {
-    "default": env.dj_db_url("DATABASE_URL")
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env.str("POSTGRES_NAME"),
+        "USER": env.str("POSTGRES_USER"),
+        "PASSWORD": env.str("POSTGRES_PASSWORD")
+    }
 }
+
+# DATABASES = {
+#    "default": env.dj_db_url("DATABASE_URL")
+# }
 
 
 # Password validation

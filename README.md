@@ -11,5 +11,8 @@
 8. Custom Tags and Filters (Simple tags and Inclusion Tags Implementation)
 9. RSS feed with syndication framework
 10. Sitemap with sitemap framework
-11. Full-text search enging with PostgreSQL - in progress....
+11. Full-text search with PostgreSQL
 
+![alt text](https://github.com/[natcobbinah]/[Blog_Django]/blob/[master]/screenshot1.PNG?raw=true)
+![alt text](https://github.com/[natcobbinah]/[Blog_Django]/blob/[master]/screenshot2.PNG?raw=true)
+![alt text](https://github.com/[natcobbinah]/[Blog_Django]/blob/[master]/screenshot3.PNG?raw=true)
